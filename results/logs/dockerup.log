@@ -1,0 +1,96 @@
+Unable to find image 'vllm/vllm-openai:latest' locally
+latest: Pulling from vllm/vllm-openai
+3d082bb907b3: Pulling fs layer
+d63767c1d74f: Pulling fs layer
+64085e491db5: Pulling fs layer
+3ac2b943f907: Pulling fs layer
+b796e5636943: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+53870aebeb08: Pulling fs layer
+f1229c10fa78: Pulling fs layer
+526d5438c009: Pulling fs layer
+5410c125fe7b: Pulling fs layer
+af14e2f3fe5a: Pulling fs layer
+5f88f754cc1d: Pulling fs layer
+775aa3aff033: Pulling fs layer
+f9ebdb0051df: Pulling fs layer
+e92a78be1526: Pulling fs layer
+15688b70a7ea: Pulling fs layer
+15688b70a7ea: Pulling fs layer
+2cf9fba20a14: Pulling fs layer
+828c1365039a: Pulling fs layer
+b2bace91eb1e: Pulling fs layer
+89230c24fb80: Pulling fs layer
+0e0a2c237a99: Pulling fs layer
+31e49ca9b3e8: Pulling fs layer
+2072e6996b77: Pulling fs layer
+72d0af6abce9: Pulling fs layer
+b4374f1ab284: Pulling fs layer
+d561ce537a60: Pulling fs layer
+ae592f8248d1: Pulling fs layer
+2f582e1b8852: Pulling fs layer
+544c85b30964: Pulling fs layer
+cb76459c4961: Pulling fs layer
+89230c24fb80: Download complete
+5f88f754cc1d: Download complete
+15688b70a7ea: Download complete
+e92a78be1526: Download complete
+4f4fb700ef54: Download complete
+31e49ca9b3e8: Download complete
+3d082bb907b3: Download complete
+af14e2f3fe5a: Download complete
+b2bace91eb1e: Download complete
+d63767c1d74f: Download complete
+ae592f8248d1: Download complete
+b796e5636943: Download complete
+53870aebeb08: Download complete
+526d5438c009: Download complete
+2f582e1b8852: Download complete
+2cf9fba20a14: Download complete
+f1229c10fa78: Download complete
+2072e6996b77: Download complete
+828c1365039a: Download complete
+775aa3aff033: Download complete
+828c1365039a: Pull complete
+0e0a2c237a99: Download complete
+2cf9fba20a14: Pull complete
+5410c125fe7b: Download complete
+0e0a2c237a99: Pull complete
+31e49ca9b3e8: Pull complete
+3d082bb907b3: Pull complete
+b796e5636943: Pull complete
+526d5438c009: Pull complete
+72d0af6abce9: Download complete
+f9ebdb0051df: Download complete
+544c85b30964: Download complete
+d561ce537a60: Download complete
+cb76459c4961: Download complete
+f9ebdb0051df: Pull complete
+3ac2b943f907: Download complete
+b4374f1ab284: Download complete
+3ac2b943f907: Pull complete
+64085e491db5: Download complete
+15688b70a7ea: Pull complete
+e92a78be1526: Pull complete
+b2bace91eb1e: Pull complete
+d63767c1d74f: Pull complete
+ae592f8248d1: Pull complete
+775aa3aff033: Pull complete
+64085e491db5: Pull complete
+b4374f1ab284: Pull complete
+2f582e1b8852: Pull complete
+f1229c10fa78: Pull complete
+89230c24fb80: Pull complete
+5410c125fe7b: Pull complete
+4f4fb700ef54: Pull complete
+544c85b30964: Pull complete
+2072e6996b77: Pull complete
+5f88f754cc1d: Pull complete
+d561ce537a60: Pull complete
+af14e2f3fe5a: Pull complete
+53870aebeb08: Pull complete
+72d0af6abce9: Pull complete
+cb76459c4961: Pull complete
+Digest: sha256:953d3a06d5e64ab582985cd7401289d3abf2a2c14ef2158e9a84313daeec77d7
+Status: Downloaded newer image for vllm/vllm-openai:latest
+2a8bebd80ad7d5e8378e9be00d2c72a37e68dde353f9d86789b385cd6c802b35

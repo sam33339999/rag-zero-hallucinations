@@ -1,0 +1,30 @@
+[bring_up] START Fri Jun  5 08:21:33 UTC 2026
+[bring_up] pip install -r requirements.txt (this is the slow part) ...
+[dl] start Qwen/Qwen3-8B
+/mnt/data/venv/lib/python3.12/site-packages/huggingface_hub/constants.py:277: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+Fetching 15 files:   0%|          | 0/15 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 15 files:  40%|████      | 6/15 [00:00<00:00, 54.27it/s]Fetching 15 files:  80%|████████  | 12/15 [00:14<00:04,  1.41s/it]Fetching 15 files: 100%|██████████| 15/15 [00:14<00:00,  1.04it/s]
+[dl] ok Qwen/Qwen3-8B
+[dl] start Qwen/Qwen3-Embedding-4B
+/mnt/data/venv/lib/python3.12/site-packages/huggingface_hub/constants.py:277: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+Fetching 14 files:   0%|          | 0/14 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 14 files:  36%|███▌      | 5/14 [00:00<00:00, 38.12it/s]Fetching 14 files:  64%|██████▍   | 9/14 [00:08<00:05,  1.15s/it]Fetching 14 files: 100%|██████████| 14/14 [00:08<00:00,  1.61it/s]
+[dl] ok Qwen/Qwen3-Embedding-4B
+[dl] start Qwen/Qwen3-Reranker-4B
+/mnt/data/venv/lib/python3.12/site-packages/huggingface_hub/constants.py:277: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+Fetching 17 files:   0%|          | 0/17 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING: huggingface-hub 1.17.0 does not provide the extra 'hf-transfer'
+Fetching 17 files:  53%|█████▎    | 9/17 [00:14<00:12,  1.58s/it]Fetching 17 files:  59%|█████▉    | 10/17 [00:14<00:09,  1.41s/it]Fetching 17 files: 100%|██████████| 17/17 [00:14<00:00,  1.17it/s]
+[dl] ok Qwen/Qwen3-Reranker-4B
+[dl] start vectara/hallucination_evaluation_model
+/mnt/data/venv/lib/python3.12/site-packages/huggingface_hub/constants.py:277: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 7 files:  29%|██▊       | 2/7 [00:00<00:00, 19.84it/s]Fetching 7 files:  86%|████████▌ | 6/7 [00:03<00:00,  1.48it/s]Fetching 7 files: 100%|██████████| 7/7 [00:03<00:00,  1.90it/s]
+[dl] ok vectara/hallucination_evaluation_model
+[dl] ALL_DOWNLOADS_DONE
+[bring_up] deps installed; waiting on model downloads ...
+[bring_up] SETUP_DONE Fri Jun  5 08:25:50 UTC 2026

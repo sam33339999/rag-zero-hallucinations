@@ -1,0 +1,53 @@
+# ============================================================================
+# Near-Zero-Hallucination Agentic RAG — Python dependencies
+# Target: 1x NVIDIA H100 80GB, Ubuntu 24.04 + CUDA 12.8 (Hyperstack n3-H100x1)
+# Installed into /mnt/data/venv on the VM by scripts/setup_vm.sh
+# Pins are minimums (">=") to tolerate newer CUDA-12.x wheels; setup_vm.sh
+# resolves the exact compatible versions at install time.
+# ============================================================================
+
+# --- Core DL / serving (install torch FIRST, matched to the image's CUDA) ---
+# torch is installed separately in setup_vm.sh with the correct cu12x index-url.
+vllm>=0.6.3                  # OpenAI-compatible server for Qwen3-32B (FP8 + paged KV)
+transformers>=4.51           # Qwen3 architecture support
+sentence-transformers>=3.3   # embedder + CrossEncoder reranker
+accelerate>=1.0
+safetensors
+einops
+# autoawq                    # uncomment only if you switch to AWQ checkpoints
+
+# --- Retrieval / hybrid index (all local, on-disk) ---
+lancedb>=0.15                # embedded on-disk vector store (NVMe-backed)
+bm25s>=0.2                   # fast sparse / BM25
+PyStemmer                    # stemming for bm25s
+datasketch                   # MinHash LSH near-duplicate dedup
+
+# --- Agent orchestration ---
+langgraph>=0.2.50            # stateful CRAG / Self-RAG agent graph
+langchain-core>=0.3
+
+# --- Evaluation ---
+ragas>=0.2.8                 # faithfulness / answer-rel / context precision+recall
+scikit-learn                 # ROC / AUROC / metrics
+scipy                        # curve fitting for the scale-lab extrapolation
+
+# --- Faithfulness / hallucination verifier ---
+# HHEM-2.1 (vectara/hallucination_evaluation_model) is the reliable workhorse,
+# loaded via trust_remote_code with a clean .predict([(premise, hypothesis)]) API.
+# Bespoke-MiniCheck-7B is an optional stronger second opinion (used if importable).
+# minicheck                  # optional: pip install git+https://github.com/Liyan06/MiniCheck.git
+
+# --- Data / infra / notebook execution / viz ---
+datasets>=3.0
+huggingface_hub[hf_transfer]>=0.26
+papermill>=2.6               # headless notebook execution + param injection
+jupytext>=1.16               # .py (percent) <-> .ipynb  (single source of truth)
+ipykernel
+jupyter-client               # drive a persistent kernel for interactive runs
+nbformat
+matplotlib
+pandas
+numpy
+tqdm
+pydantic>=2
+requests

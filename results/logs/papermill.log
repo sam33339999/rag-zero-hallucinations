@@ -1,0 +1,720 @@
+Input Notebook:  rag_zero_hallucination_h100.ipynb
+Output Notebook: /mnt/data/out/smoke_out.ipynb
+Unable to parse line 23 'CRAG_OK = 0.70              # >= -> evidence sufficient'.
+Unable to parse line 35 'CONTEXTUALIZE_LIMIT = 0      # 0 = contextualize all chunks; >0 caps it (cost guard)'.
+Executing notebook with kernel: rag-venv
+Executing Cell 1---------------------------------------
+Ending Cell 1------------------------------------------
+Executing Cell 2---------------------------------------
+Ending Cell 2------------------------------------------
+Executing Cell 3---------------------------------------
+Ending Cell 3------------------------------------------
+Executing Cell 4---------------------------------------
+Ending Cell 4------------------------------------------
+Executing Cell 5---------------------------------------
+profile=SMOKE  slice=200  eval=12+12  artifacts=/mnt/data/artifacts
+
+Ending Cell 5------------------------------------------
+Executing Cell 6---------------------------------------
+Ending Cell 6------------------------------------------
+Executing Cell 7---------------------------------------
+{
+  "name": "NVIDIA H100 PCIe",
+  "total_gb": 79.6,
+  "free_gb": 41.5,
+  "driver": "570.195.03"
+}
+
+Ending Cell 7------------------------------------------
+Executing Cell 8---------------------------------------
+{
+  "smoke": true,
+  "slice_size": 200,
+  "gen_model": "Qwen/Qwen3-8B",
+  "gen_endpoint": "http://localhost:8000/v1",
+  "embed_offline": "Qwen/Qwen3-Embedding-4B",
+  "embed_online": "Qwen/Qwen3-Embedding-4B",
+  "rerank_model": "Qwen/Qwen3-Reranker-4B",
+  "verifier_model": "bespokelabs/Bespoke-MiniCheck-7B",
+  "chunk_tokens": 256,
+  "chunk_overlap": 32,
+  "retrieve_k": 150,
+  "rerank_top_n": 20,
+  "rrf_k": 60,
+  "max_hops": 3,
+  "crag_ok": 0.7,
+  "crag_bad": 0.4,
+  "tau_claim": 0.3,
+  "tau_abstain": 0.3,
+  "thinking": false,
+  "seed": 42
+}
+
+Ending Cell 8------------------------------------------
+Executing Cell 9---------------------------------------
+[llm] endpoint=http://localhost:8000/v1 up=True (start it with scripts/serve_vllm.sh)
+
+Ending Cell 9------------------------------------------
+Executing Cell 10--------------------------------------
+Ending Cell 10-----------------------------------------
+Executing Cell 11--------------------------------------
+/mnt/data/venv/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+/mnt/data/venv/lib/python3.12/site-packages/huggingface_hub/constants.py:277: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+[data] hotpotqa(validation) = 7405 questions
+
+Ending Cell 11-----------------------------------------
+Executing Cell 12--------------------------------------
+[corpus] passages=209  qa_items=21  gold-bearing passages=42
+
+Ending Cell 12-----------------------------------------
+Executing Cell 13--------------------------------------
+count     209.0
+mean       94.9
+std        97.7
+min        12.0
+25%        56.0
+50%        81.0
+75%       109.0
+max      1309.0
+
+Sample question:
+  Q: Were Scott Derrickson and Ed Wood of the same nationality?
+  A: yes   (type=comparison)
+  gold titles: ['Scott Derrickson', 'Ed Wood']
+   - Scott Derrickson (born July 16, 1966) is an American director, screenwriter and producer.
+   - Edward Davis Wood Jr. (October 10, 1924 – December 10, 1978) was an American filmmaker, actor, writer, producer, and director.
+
+Ending Cell 13-----------------------------------------
+Executing Cell 14--------------------------------------
+Ending Cell 14-----------------------------------------
+Executing Cell 15--------------------------------------
+Ending Cell 15-----------------------------------------
+Executing Cell 16--------------------------------------
+Ending Cell 16-----------------------------------------
+Executing Cell 17--------------------------------------
+{
+  "kept": 209,
+  "dropped_near_dup": 0,
+  "input": 209,
+  "after_quality": 209,
+  "after_dedup": 209
+}
+
+Ending Cell 17-----------------------------------------
+Executing Cell 18--------------------------------------
+Ending Cell 18-----------------------------------------
+Executing Cell 19--------------------------------------
+[chunk] 209 passages -> 227 chunks  (tokens: mean=129 p95=243)
+
+Ending Cell 19-----------------------------------------
+Executing Cell 20--------------------------------------
+Ending Cell 20-----------------------------------------
+Executing Cell 21--------------------------------------
+[ctx] loading checkpoint chunks_ctx_227.pkl
+[ctx] done in 0.0s
+
+Before:
+  Ed Wood is a 1994 American biographical period comedy-drama film directed and produced by Tim Burton, and starring Johnny Depp as cult filmmaker Ed Wood. The film concerns the period in Wood's life wh
+After (context-prefixed):
+  The chunk provides a detailed overview of the 1994 film *Ed Wood*, including its director, cast, and thematic focus.
+Ed Wood is a 1994 American biographical period comedy-drama film directed and produced by Tim Burton, and starring Johnny Depp as cult filmmake
+
+Ending Cell 21-----------------------------------------
+Executing Cell 22--------------------------------------
+Ending Cell 22-----------------------------------------
+Executing Cell 23--------------------------------------
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/398 [00:00<00:40,  9.89it/s]
+Loading weights:  15%|█▍        | 58/398 [00:00<00:01, 322.40it/s]
+Loading weights:  26%|██▌       | 102/398 [00:00<00:00, 373.82it/s]
+Loading weights:  37%|███▋      | 147/398 [00:00<00:00, 401.32it/s]
+Loading weights:  48%|████▊     | 190/398 [00:00<00:00, 402.80it/s]
+Loading weights:  62%|██████▏   | 245/398 [00:00<00:00, 441.13it/s]
+Loading weights:  73%|███████▎  | 289/398 [00:00<00:00, 437.96it/s]
+Loading weights:  84%|████████▍ | 334/398 [00:00<00:00, 424.42it/s]
+Loading weights:  97%|█████████▋| 388/398 [00:00<00:00, 439.64it/s]
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 415.33it/s]
+
+
+[vram] reranker               gpu_used=45.6GB  kernel=7.49GB
+
+Ending Cell 23-----------------------------------------
+Executing Cell 24--------------------------------------
+Loading weights:   0%|          | 0/202 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 202/202 [00:00<00:00, 7239.28it/s]
+[vram] verifier               gpu_used=46.34GB  kernel=8.18GB
+
+
+
+Ending Cell 24-----------------------------------------
+Executing Cell 25--------------------------------------
+[vram] whole-GPU used=46.34GB / 80.0GB (need >= 3.0GB headroom)
+
+Ending Cell 25-----------------------------------------
+Executing Cell 26--------------------------------------
+Ending Cell 26-----------------------------------------
+Executing Cell 27--------------------------------------
+Ending Cell 27-----------------------------------------
+Executing Cell 28--------------------------------------
+Ending Cell 28-----------------------------------------
+Executing Cell 29--------------------------------------
+Ending Cell 29-----------------------------------------
+Executing Cell 30--------------------------------------
+[index] loading checkpoints
+[index] LanceDB on-disk: /mnt/data/artifacts/lancedb  |  bm25 over 227 chunks
+
+Ending Cell 30-----------------------------------------
+Executing Cell 31--------------------------------------
+Ending Cell 31-----------------------------------------
+Executing Cell 32--------------------------------------
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]
+Loading weights:  25%|██▍       | 99/398 [00:00<00:00, 963.37it/s]
+Loading weights:  49%|████▉     | 196/398 [00:00<00:00, 955.56it/s]
+Loading weights:  73%|███████▎  | 292/398 [00:00<00:00, 933.96it/s]
+Loading weights:  97%|█████████▋| 386/398 [00:00<00:00, 901.47it/s]
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 934.35it/s]
+
+
+[vram] embedder(online)       gpu_used=53.89GB  kernel=15.72GB
+
+Ending Cell 32-----------------------------------------
+Executing Cell 33--------------------------------------
+Ending Cell 33-----------------------------------------
+Executing Cell 34--------------------------------------
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Q: Were Scott Derrickson and Ed Wood of the same nationality?
+ gold titles: ['Scott Derrickson', 'Ed Wood']
+ recall@20:  dense=1.00  hybrid=1.00  reranked=1.00
+ top-3 reranked:
+   [44bb60da3bb1] (0.999) Scott Derrickson: Scott Derrickson (born July 16, 1966) is an American director, screenwriter and producer. ...
+   [810fa2715d70] (0.996) Ed Wood: Edward Davis Wood Jr. (October 10, 1924 – December 10, 1978) was an American filmmaker, ac...
+   [8129ef6f6a3d] (0.796) Ed Wood (film): Ed Wood is a 1994 American biographical period comedy-drama film directed and produced by ...
+
+Ending Cell 34-----------------------------------------
+Executing Cell 35--------------------------------------
+Ending Cell 35-----------------------------------------
+Executing Cell 36--------------------------------------
+Ending Cell 36-----------------------------------------
+Executing Cell 37--------------------------------------
+route('Were Scott Derrickson and Ed Wood of the same nationality?...') -> single_hop
+decompose ->
+
+   • What nationality was Scott Derrickson?
+   • What nationality was Ed Wood?
+   • Did Scott Derrickson and Ed Wood share the same nationality?
+
+Ending Cell 37-----------------------------------------
+Executing Cell 38--------------------------------------
+Ending Cell 38-----------------------------------------
+Executing Cell 39--------------------------------------
+Ending Cell 39-----------------------------------------
+Executing Cell 40--------------------------------------
+Q: Were Scott Derrickson and Ed Wood of the same nationality?
+abstained=False  citations=['44bb60da3bb1', '810fa2715d70']
+A: Scott Derrickson is an American director, screenwriter, and producer [44bb60da3bb1]. Ed Wood is also an American filmmaker, actor, writer, producer, and director [810fa2715d70]. Therefore, both Scott Derrickson and Ed Wood were of the same nationality.
+
+Ending Cell 40-----------------------------------------
+Executing Cell 41--------------------------------------
+Ending Cell 41-----------------------------------------
+Executing Cell 42--------------------------------------
+Ending Cell 42-----------------------------------------
+Executing Cell 43--------------------------------------
+Ending Cell 43-----------------------------------------
+Executing Cell 44--------------------------------------
+claims=9  passed=False  min_support=0.00
+   [OK 1.00] Scott Derrickson is an American director.
+   [OK 0.97] Scott Derrickson is an American screenwriter.
+   [OK 0.80] Scott Derrickson is an American producer.
+   [OK 1.00] Ed Wood is an American filmmaker.
+   [OK 0.99] Ed Wood is an American actor.
+   [OK 0.98] Ed Wood is an American writer.
+   [OK 0.99] Ed Wood is an American producer.
+   [OK 1.00] Ed Wood is an American director.
+   [XX 0.00] Scott Derrickson and Ed Wood were both American.
+
+Ending Cell 44-----------------------------------------
+Executing Cell 45--------------------------------------
+Ending Cell 45-----------------------------------------
+Executing Cell 46--------------------------------------
+AbstentionPolicy ready; reasons = {routed_no_retrieval, false_premise, model_abstained, unsupported_claims, verified}
+
+Ending Cell 46-----------------------------------------
+Executing Cell 47--------------------------------------
+Ending Cell 47-----------------------------------------
+Executing Cell 48--------------------------------------
+Ending Cell 48-----------------------------------------
+Executing Cell 49--------------------------------------
+Ending Cell 49-----------------------------------------
+Executing Cell 50--------------------------------------
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Q: Were Scott Derrickson and Ed Wood of the same nationality?
+route=single_hop hops=0 grade=1.00 status=abstained reason=unsupported_claims
+A: I don't have enough supporting evidence in the available sources to answer this confidently.
+latencies(s): {'route': 0.08, 'retrieve': 2.35, 'grade': 0.05, 'generate': 0.68, 'verify': 1.33, 'total': 4.5}
+
+Ending Cell 50-----------------------------------------
+Executing Cell 51--------------------------------------
+Ending Cell 51-----------------------------------------
+Executing Cell 52--------------------------------------
+[golden] 24 items  (answerable=12, unanswerable=12)
+
+Ending Cell 52-----------------------------------------
+Executing Cell 53--------------------------------------
+Ending Cell 53-----------------------------------------
+Executing Cell 54--------------------------------------
+Ending Cell 54-----------------------------------------
+Executing Cell 55--------------------------------------
+Ending Cell 55-----------------------------------------
+Executing Cell 56--------------------------------------
+Ending Cell 56-----------------------------------------
+Executing Cell 57--------------------------------------
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...2/24
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...4/24
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...6/24
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...8/24
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...10/24
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...12/24
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...14/24
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...16/24
+   ...18/24
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...20/24
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...22/24
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...24/24
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+[fig] /mnt/data/out/figures/confusion_2x2.png
+[fig] /mnt/data/out/figures/risk_coverage.png
+
+confusion (rows ans/unans, cols answered/abstained):
+ [[ 3  9]
+ [ 0 12]]
+
+chosen τ* (halluc<=5%): 0.05
+metrics: {
+  "faithfulness": 0.858,
+  "answer_relevancy": 0.673,
+  "context_recall@k": 1.0,
+  "answerable_accuracy": 0.833
+}
+hallucinations (unanswerable answered): 0 / 12 unanswerable
+
+Ending Cell 57-----------------------------------------
+Executing Cell 58--------------------------------------
+Ending Cell 58-----------------------------------------
+Executing Cell 59--------------------------------------
+[fig] /mnt/data/out/figures/verifier_roc.png
+[verifier] AUROC=0.394 over n=60 HaluBench items
+
+Ending Cell 59-----------------------------------------
+Executing Cell 60--------------------------------------
+Ending Cell 60-----------------------------------------
+Executing Cell 61--------------------------------------
+[scale] skipped (SMOKE/off)
+
+Ending Cell 61-----------------------------------------
+Executing Cell 62--------------------------------------
+Ending Cell 62-----------------------------------------
+Executing Cell 63--------------------------------------
+[fig] /mnt/data/out/figures/stage_latency.png
+   stage  p50_s  p95_s  mean_s
+retrieve  4.454 17.178   6.844
+   total  4.575 18.283   5.547
+  refine  1.134  1.209   0.903
+  verify  0.628  1.715   0.872
+generate  0.590  0.892   0.597
+   route  0.079  0.098   0.085
+   grade  0.051  0.205   0.074
+
+HEADLINE:
+ {
+  "faithfulness": 0.858,
+  "answer_relevancy": 0.673,
+  "context_recall@k": 1.0,
+  "answerable_accuracy": 0.833,
+  "abstention_on_unanswerable": 1.0,
+  "hallucination_on_unanswerable": 0.0,
+  "coverage_on_answerable": 0.25,
+  "tau_star": 0.05,
+  "verifier_auroc": 0.394,
+  "scale_projection_100M": {},
+  "latency_p95_s": 18.283
+}
+
+Ending Cell 63-----------------------------------------
+Executing Cell 64--------------------------------------
+Ending Cell 64-----------------------------------------
+Executing Cell 65--------------------------------------
+[manifest] /mnt/data/out/run_manifest.json
+{
+  "faithfulness": 0.858,
+  "answer_relevancy": 0.673,
+  "context_recall@k": 1.0,
+  "answerable_accuracy": 0.833,
+  "abstention_on_unanswerable": 1.0,
+  "hallucination_on_unanswerable": 0.0,
+  "coverage_on_answerable": 0.25,
+  "tau_star": 0.05,
+  "verifier_auroc": 0.394,
+  "scale_projection_100M": {},
+  "latency_p95_s": 18.283
+}
+
+Done. Pull artifacts with scripts/pull_results.sh
+
+Ending Cell 65-----------------------------------------

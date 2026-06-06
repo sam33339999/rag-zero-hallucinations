@@ -1,0 +1,3110 @@
+Input Notebook:  rag_zero_hallucination_h100.ipynb
+Output Notebook: /mnt/data/out/judge_out.ipynb
+Unable to parse line 24 'CRAG_OK = 0.70              # >= -> evidence sufficient'.
+Unable to parse line 36 'CONTEXTUALIZE_LIMIT = 0      # 0 = contextualize all chunks; >0 caps it (cost guard)'.
+Executing notebook with kernel: rag-venv
+Executing Cell 1---------------------------------------
+Ending Cell 1------------------------------------------
+Executing Cell 2---------------------------------------
+Ending Cell 2------------------------------------------
+Executing Cell 3---------------------------------------
+Ending Cell 3------------------------------------------
+Executing Cell 4---------------------------------------
+Ending Cell 4------------------------------------------
+Executing Cell 5---------------------------------------
+profile=FULL  slice=20000  eval=100+100  artifacts=/mnt/data/artifacts
+
+Ending Cell 5------------------------------------------
+Executing Cell 6---------------------------------------
+Ending Cell 6------------------------------------------
+Executing Cell 7---------------------------------------
+{
+  "name": "NVIDIA H100 PCIe",
+  "total_gb": 79.6,
+  "free_gb": 32.8,
+  "driver": "570.195.03"
+}
+
+Ending Cell 7------------------------------------------
+Executing Cell 8---------------------------------------
+{
+  "smoke": false,
+  "slice_size": 20000,
+  "gen_model": "Qwen/Qwen3-32B",
+  "gen_endpoint": "http://localhost:8000/v1",
+  "embed_offline": "Qwen/Qwen3-Embedding-4B",
+  "embed_online": "Qwen/Qwen3-Embedding-4B",
+  "rerank_model": "Qwen/Qwen3-Reranker-4B",
+  "verifier_model": "bespokelabs/Bespoke-MiniCheck-7B",
+  "chunk_tokens": 256,
+  "chunk_overlap": 32,
+  "retrieve_k": 150,
+  "rerank_top_n": 20,
+  "rrf_k": 60,
+  "max_hops": 3,
+  "crag_ok": 0.7,
+  "crag_bad": 0.4,
+  "tau_claim": 0.3,
+  "tau_abstain": 0.3,
+  "thinking": false,
+  "seed": 42
+}
+
+Ending Cell 8------------------------------------------
+Executing Cell 9---------------------------------------
+[llm] endpoint=http://localhost:8000/v1 up=True (start it with scripts/serve_vllm.sh)
+
+Ending Cell 9------------------------------------------
+Executing Cell 10--------------------------------------
+Ending Cell 10-----------------------------------------
+Executing Cell 11--------------------------------------
+/mnt/data/venv/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+/mnt/data/venv/lib/python3.12/site-packages/huggingface_hub/constants.py:277: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+[data] hotpotqa(validation) = 7405 questions
+
+Ending Cell 11-----------------------------------------
+Executing Cell 12--------------------------------------
+[corpus] passages=20007  qa_items=2073  gold-bearing passages=4072
+
+Ending Cell 12-----------------------------------------
+Executing Cell 13--------------------------------------
+count    20007.0
+mean        89.2
+std         53.4
+min          7.0
+25%         54.0
+50%         80.0
+75%        113.0
+max       1378.0
+
+Sample question:
+  Q: Were Scott Derrickson and Ed Wood of the same nationality?
+  A: yes   (type=comparison)
+  gold titles: ['Scott Derrickson', 'Ed Wood']
+   - Scott Derrickson (born July 16, 1966) is an American director, screenwriter and producer.
+   - Edward Davis Wood Jr. (October 10, 1924 – December 10, 1978) was an American filmmaker, actor, writer, producer, and director.
+
+Ending Cell 13-----------------------------------------
+Executing Cell 14--------------------------------------
+Ending Cell 14-----------------------------------------
+Executing Cell 15--------------------------------------
+Ending Cell 15-----------------------------------------
+Executing Cell 16--------------------------------------
+Ending Cell 16-----------------------------------------
+Executing Cell 17--------------------------------------
+{
+  "kept": 19987,
+  "dropped_near_dup": 19,
+  "input": 20007,
+  "after_quality": 20006,
+  "after_dedup": 19987
+}
+
+Ending Cell 17-----------------------------------------
+Executing Cell 18--------------------------------------
+Ending Cell 18-----------------------------------------
+Executing Cell 19--------------------------------------
+[chunk] 19987 passages -> 21259 chunks  (tokens: mean=125 p95=236)
+
+Ending Cell 19-----------------------------------------
+Executing Cell 20--------------------------------------
+Ending Cell 20-----------------------------------------
+Executing Cell 21--------------------------------------
+[ctx] loading checkpoint chunks_ctx_21259.pkl
+[ctx] done in 0.1s
+
+Before:
+  Ed Wood is a 1994 American biographical period comedy-drama film directed and produced by Tim Burton, and starring Johnny Depp as cult filmmaker Ed Wood. The film concerns the period in Wood's life wh
+After (context-prefixed):
+  This chunk introduces the 1994 film *Ed Wood*, directed by Tim Burton, and outlines its main subject and cast.
+Ed Wood is a 1994 American biographical period comedy-drama film directed and produced by Tim Burton, and starring Johnny Depp as cult filmmaker Ed W
+
+Ending Cell 21-----------------------------------------
+Executing Cell 22--------------------------------------
+Ending Cell 22-----------------------------------------
+Executing Cell 23--------------------------------------
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/398 [00:00<03:34,  1.85it/s]
+Loading weights:  12%|█▏        | 49/398 [00:00<00:03, 100.39it/s]
+Loading weights:  19%|█▉        | 76/398 [00:00<00:02, 125.71it/s]
+Loading weights:  25%|██▍       | 99/398 [00:00<00:02, 137.45it/s]
+Loading weights:  30%|███       | 120/398 [00:01<00:01, 143.54it/s]
+Loading weights:  35%|███▍      | 139/398 [00:01<00:01, 137.42it/s]
+Loading weights:  39%|███▉      | 157/398 [00:01<00:01, 139.46it/s]
+Loading weights:  44%|████▍     | 176/398 [00:01<00:01, 146.22it/s]
+Loading weights:  48%|████▊     | 193/398 [00:01<00:01, 148.29it/s]
+Loading weights:  53%|█████▎    | 212/398 [00:01<00:01, 151.16it/s]
+Loading weights:  58%|█████▊    | 231/398 [00:01<00:01, 159.99it/s]
+Loading weights:  62%|██████▏   | 248/398 [00:01<00:00, 153.13it/s]
+Loading weights:  66%|██████▋   | 264/398 [00:02<00:00, 154.21it/s]
+Loading weights:  70%|███████   | 280/398 [00:02<00:00, 144.58it/s]
+Loading weights:  75%|███████▍  | 297/398 [00:02<00:00, 150.33it/s]
+Loading weights:  79%|███████▊  | 313/398 [00:02<00:00, 152.45it/s]
+Loading weights:  84%|████████▎ | 333/398 [00:02<00:00, 150.29it/s]
+Loading weights:  88%|████████▊ | 352/398 [00:02<00:00, 155.41it/s]
+Loading weights:  92%|█████████▏| 368/398 [00:02<00:00, 141.67it/s]
+Loading weights:  97%|█████████▋| 388/398 [00:02<00:00, 150.28it/s]
+Loading weights: 100%|██████████| 398/398 [00:02<00:00, 138.07it/s]
+
+
+[vram] reranker               gpu_used=54.3GB  kernel=7.49GB
+
+Ending Cell 23-----------------------------------------
+Executing Cell 24--------------------------------------
+[verifier] using the local LLM as faithfulness judge
+[vram] verifier               gpu_used=54.3GB  kernel=7.49GB
+
+Ending Cell 24-----------------------------------------
+Executing Cell 25--------------------------------------
+[vram] whole-GPU used=54.3GB / 80.0GB (need >= 3.0GB headroom)
+
+Ending Cell 25-----------------------------------------
+Executing Cell 26--------------------------------------
+Ending Cell 26-----------------------------------------
+Executing Cell 27--------------------------------------
+Ending Cell 27-----------------------------------------
+Executing Cell 28--------------------------------------
+Ending Cell 28-----------------------------------------
+Executing Cell 29--------------------------------------
+Ending Cell 29-----------------------------------------
+Executing Cell 30--------------------------------------
+[index] loading checkpoints
+[index] LanceDB on-disk: /mnt/data/artifacts/lancedb  |  bm25 over 21259 chunks
+
+Ending Cell 30-----------------------------------------
+Executing Cell 31--------------------------------------
+Ending Cell 31-----------------------------------------
+Executing Cell 32--------------------------------------
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]
+Loading weights:   6%|▋         | 25/398 [00:00<00:01, 210.66it/s]
+Loading weights:  12%|█▏        | 47/398 [00:00<00:01, 190.73it/s]
+Loading weights:  17%|█▋        | 67/398 [00:00<00:01, 186.77it/s]
+Loading weights:  22%|██▏       | 86/398 [00:00<00:01, 161.03it/s]
+Loading weights:  26%|██▌       | 103/398 [00:00<00:01, 149.92it/s]
+Loading weights:  30%|██▉       | 119/398 [00:00<00:01, 144.85it/s]
+Loading weights:  34%|███▎      | 134/398 [00:00<00:01, 139.54it/s]
+Loading weights:  37%|███▋      | 149/398 [00:00<00:01, 137.13it/s]
+Loading weights:  42%|████▏     | 168/398 [00:01<00:01, 139.94it/s]
+Loading weights:  48%|████▊     | 190/398 [00:01<00:01, 143.67it/s]
+Loading weights:  53%|█████▎    | 209/398 [00:01<00:01, 147.79it/s]
+Loading weights:  58%|█████▊    | 231/398 [00:01<00:01, 160.20it/s]
+Loading weights:  63%|██████▎   | 251/398 [00:01<00:00, 166.96it/s]
+Loading weights:  67%|██████▋   | 268/398 [00:01<00:00, 155.27it/s]
+Loading weights:  73%|███████▎  | 289/398 [00:01<00:00, 163.86it/s]
+Loading weights:  77%|███████▋  | 306/398 [00:01<00:00, 164.75it/s]
+Loading weights:  81%|████████  | 323/398 [00:02<00:00, 158.11it/s]
+Loading weights:  86%|████████▋ | 344/398 [00:02<00:00, 155.49it/s]
+Loading weights:  91%|█████████ | 363/398 [00:02<00:00, 154.11it/s]
+Loading weights:  95%|█████████▌| 379/398 [00:02<00:00, 151.05it/s]
+Loading weights: 100%|██████████| 398/398 [00:02<00:00, 158.04it/s]
+
+
+[vram] embedder(online)       gpu_used=61.85GB  kernel=15.04GB
+
+Ending Cell 32-----------------------------------------
+Executing Cell 33--------------------------------------
+Ending Cell 33-----------------------------------------
+Executing Cell 34--------------------------------------
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Q: Were Scott Derrickson and Ed Wood of the same nationality?
+ gold titles: ['Scott Derrickson', 'Ed Wood']
+ recall@20:  dense=1.00  hybrid=1.00  reranked=1.00
+ top-3 reranked:
+   [a9ec406223bd] (0.999) Scott Derrickson: Scott Derrickson (born July 16, 1966) is an American director, screenwriter and producer. ...
+   [2d2201c92ac5] (0.996) Ed Wood: Edward Davis Wood Jr. (October 10, 1924 – December 10, 1978) was an American filmmaker, ac...
+   [b7dbb0e190b4] (0.796) Ed Wood (film): Ed Wood is a 1994 American biographical period comedy-drama film directed and produced by ...
+
+Ending Cell 34-----------------------------------------
+Executing Cell 35--------------------------------------
+Ending Cell 35-----------------------------------------
+Executing Cell 36--------------------------------------
+Ending Cell 36-----------------------------------------
+Executing Cell 37--------------------------------------
+route('Were Scott Derrickson and Ed Wood of the same nationality?...') -> single_hop
+decompose ->
+
+   • What is the nationality of Scott Derrickson?
+   • What is the nationality of Ed Wood?
+
+Ending Cell 37-----------------------------------------
+Executing Cell 38--------------------------------------
+Ending Cell 38-----------------------------------------
+Executing Cell 39--------------------------------------
+Ending Cell 39-----------------------------------------
+Executing Cell 40--------------------------------------
+Q: Were Scott Derrickson and Ed Wood of the same nationality?
+abstained=False  citations=['a9ec406223bd', '2d2201c92ac5']
+A: Yes, Scott Derrickson and Ed Wood were of the same nationality; both were American. [a9ec406223bd] [2d2201c92ac5]
+
+Ending Cell 40-----------------------------------------
+Executing Cell 41--------------------------------------
+Ending Cell 41-----------------------------------------
+Executing Cell 42--------------------------------------
+Ending Cell 42-----------------------------------------
+Executing Cell 43--------------------------------------
+Ending Cell 43-----------------------------------------
+Executing Cell 44--------------------------------------
+claims=3  passed=True  min_support=1.00
+   [OK 1.00] Scott Derrickson is American.
+   [OK 1.00] Ed Wood is American.
+   [OK 1.00] Scott Derrickson and Ed Wood share the same nationality.
+
+Ending Cell 44-----------------------------------------
+Executing Cell 45--------------------------------------
+Ending Cell 45-----------------------------------------
+Executing Cell 46--------------------------------------
+AbstentionPolicy ready; reasons = {routed_no_retrieval, false_premise, model_abstained, unsupported_claims, verified}
+
+Ending Cell 46-----------------------------------------
+Executing Cell 47--------------------------------------
+Ending Cell 47-----------------------------------------
+Executing Cell 48--------------------------------------
+Ending Cell 48-----------------------------------------
+Executing Cell 49--------------------------------------
+Ending Cell 49-----------------------------------------
+Executing Cell 50--------------------------------------
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Q: Were Scott Derrickson and Ed Wood of the same nationality?
+route=single_hop hops=0 grade=1.00 status=answered reason=verified
+A: Yes, Scott Derrickson and Ed Wood were of the same nationality; both were American. [a9ec406223bd] [2d2201c92ac5]
+latencies(s): {'route': 0.16, 'retrieve': 2.4, 'grade': 0.13, 'generate': 0.94, 'verify': 0.97, 'total': 4.6}
+
+Ending Cell 50-----------------------------------------
+Executing Cell 51--------------------------------------
+Ending Cell 51-----------------------------------------
+Executing Cell 52--------------------------------------
+[golden] 200 items  (answerable=100, unanswerable=100)
+
+Ending Cell 52-----------------------------------------
+Executing Cell 53--------------------------------------
+Ending Cell 53-----------------------------------------
+Executing Cell 54--------------------------------------
+Ending Cell 54-----------------------------------------
+Executing Cell 55--------------------------------------
+Ending Cell 55-----------------------------------------
+Executing Cell 56--------------------------------------
+Ending Cell 56-----------------------------------------
+Executing Cell 57--------------------------------------
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...20/200
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...40/200
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...60/200
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...80/200
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...100/200
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...120/200
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...140/200
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...160/200
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...180/200
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+   ...200/200
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+Split strings:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                    
+
+Stem Tokens:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                  
+
+BM25S Retrieve:   0%|          | 0/1 [00:00<?, ?it/s]
+                                                     
+
+[fig] /mnt/data/out/figures/confusion_2x2.png
+[fig] /mnt/data/out/figures/risk_coverage.png
+
+confusion (rows ans/unans, cols answered/abstained):
+ [[46 54]
+ [ 2 98]]
+
+chosen τ* (halluc<=5%): 1.0
+metrics: {
+  "faithfulness": 0.908,
+  "answer_relevancy": 0.817,
+  "context_recall@k": 0.97,
+  "answerable_accuracy": 0.58
+}
+hallucinations (unanswerable answered): 2 / 100 unanswerable
+
+Ending Cell 57-----------------------------------------
+Executing Cell 58--------------------------------------
+Ending Cell 58-----------------------------------------
+Executing Cell 59--------------------------------------
+[fig] /mnt/data/out/figures/verifier_roc.png
+[verifier] AUROC=0.702 over n=300 HaluBench items
+
+Ending Cell 59-----------------------------------------
+Executing Cell 60--------------------------------------
+Ending Cell 60-----------------------------------------
+Executing Cell 61--------------------------------------
+[scale] skipped (SMOKE/off)
+
+Ending Cell 61-----------------------------------------
+Executing Cell 62--------------------------------------
+Ending Cell 62-----------------------------------------
+Executing Cell 63--------------------------------------
+[fig] /mnt/data/out/figures/stage_latency.png
+   stage  p50_s  p95_s  mean_s
+   total  4.001 17.668   5.823
+retrieve  3.074 11.393   4.166
+  verify  1.534  3.878   1.758
+generate  1.451  2.484   1.619
+  refine  1.471  2.888   1.575
+   route  0.168  0.206   0.170
+   grade  0.127  0.431   0.161
+
+HEADLINE:
+ {
+  "faithfulness": 0.908,
+  "answer_relevancy": 0.817,
+  "context_recall@k": 0.97,
+  "answerable_accuracy": 0.58,
+  "abstention_on_unanswerable": 0.98,
+  "hallucination_on_unanswerable": 0.02,
+  "coverage_on_answerable": 0.46,
+  "tau_star": 1.0,
+  "verifier_auroc": 0.702,
+  "scale_projection_100M": {},
+  "latency_p95_s": 17.668
+}
+
+Ending Cell 63-----------------------------------------
+Executing Cell 64--------------------------------------
+Ending Cell 64-----------------------------------------
+Executing Cell 65--------------------------------------
+[manifest] /mnt/data/out/run_manifest.json
+{
+  "faithfulness": 0.908,
+  "answer_relevancy": 0.817,
+  "context_recall@k": 0.97,
+  "answerable_accuracy": 0.58,
+  "abstention_on_unanswerable": 0.98,
+  "hallucination_on_unanswerable": 0.02,
+  "coverage_on_answerable": 0.46,
+  "tau_star": 1.0,
+  "verifier_auroc": 0.702,
+  "scale_projection_100M": {},
+  "latency_p95_s": 17.668
+}
+
+Done. Pull artifacts with scripts/pull_results.sh
+
+Ending Cell 65-----------------------------------------

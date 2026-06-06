@@ -1,0 +1,61 @@
+{
+  "config": {
+    "smoke": false,
+    "slice_size": 20000,
+    "gen_model": "Qwen/Qwen3-32B",
+    "gen_endpoint": "http://localhost:8000/v1",
+    "embed_offline": "Qwen/Qwen3-Embedding-4B",
+    "embed_online": "Qwen/Qwen3-Embedding-4B",
+    "rerank_model": "Qwen/Qwen3-Reranker-4B",
+    "verifier_model": "bespokelabs/Bespoke-MiniCheck-7B",
+    "chunk_tokens": 256,
+    "chunk_overlap": 32,
+    "retrieve_k": 150,
+    "rerank_top_n": 20,
+    "rrf_k": 60,
+    "max_hops": 3,
+    "crag_ok": 0.7,
+    "crag_bad": 0.4,
+    "tau_claim": 0.3,
+    "tau_abstain": 0.3,
+    "thinking": false,
+    "seed": 42
+  },
+  "gpu": {
+    "name": "NVIDIA H100 PCIe",
+    "total_gb": 79.6,
+    "free_gb": 32.8,
+    "driver": "570.195.03"
+  },
+  "corpus": {
+    "passages": 19987,
+    "chunks": 21259
+  },
+  "golden": {
+    "n": 200,
+    "answerable": 100,
+    "unanswerable": 100
+  },
+  "headline": {
+    "faithfulness": 0.908,
+    "answer_relevancy": 0.817,
+    "context_recall@k": 0.97,
+    "answerable_accuracy": 0.58,
+    "abstention_on_unanswerable": 0.98,
+    "hallucination_on_unanswerable": 0.02,
+    "coverage_on_answerable": 0.46,
+    "tau_star": 1.0,
+    "verifier_auroc": 0.702,
+    "scale_projection_100M": {},
+    "latency_p95_s": 17.668
+  },
+  "scale_measured": [],
+  "scale_projection_100M": {},
+  "figures": [
+    "/mnt/data/out/figures/confusion_2x2.png",
+    "/mnt/data/out/figures/risk_coverage.png",
+    "/mnt/data/out/figures/scale_lab.png",
+    "/mnt/data/out/figures/stage_latency.png",
+    "/mnt/data/out/figures/verifier_roc.png"
+  ]
+}

@@ -1,0 +1,4 @@
+Fetching 27 files:   0%|          | 0/27 [00:00<?, ?it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 27 files:  26%|██▌       | 7/27 [00:22<01:03,  3.15s/it]Fetching 27 files:  56%|█████▌    | 15/27 [00:23<00:15,  1.27s/it]Fetching 27 files:  59%|█████▉    | 16/27 [00:33<00:24,  2.21s/it]Fetching 27 files:  63%|██████▎   | 17/27 [00:35<00:21,  2.12s/it]Fetching 27 files:  67%|██████▋   | 18/27 [00:41<00:24,  2.76s/it]Fetching 27 files:  70%|███████   | 19/27 [00:42<00:19,  2.42s/it]Fetching 27 files: 100%|██████████| 27/27 [00:42<00:00,  1.57s/it]
+OK Qwen/Qwen3-32B
+DLDONE

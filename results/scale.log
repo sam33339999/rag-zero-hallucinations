@@ -1,0 +1,49 @@
+[scale] building n=100,000 with IVF_PQ ANN index ...
+[2026-06-05T13:07:21Z WARN  lance::dataset::write::insert] No existing dataset at /ephemeral/scratch/ann_100000/v.lance, it will be created
+  -> {'n': 100000, 'build_s': 41.82, 'disk_gb': 0.39, 'p50_ms': 8.5, 'p95_ms': 10.59, 'recall@10': 0.135}
+[scale] building n=1,000,000 with IVF_PQ ANN index ...
+[2026-06-05T13:08:19Z WARN  lance::dataset::write::insert] No existing dataset at /ephemeral/scratch/ann_1000000/v.lance, it will be created
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 9 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 13 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 17 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 95 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 98 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 220 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 242 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 251 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 252 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 253 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 328 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 341 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 443 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 471 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 474 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 508 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 532 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 563 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 626 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 627 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 645 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 655 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 657 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 688 is empty, skipping
+[2026-06-05T13:09:35Z WARN  lance::index::vector::builder] partition 789 is empty, skipping
+[2026-06-05T13:09:36Z WARN  lance::index::vector::builder] partition 799 is empty, skipping
+[2026-06-05T13:09:36Z WARN  lance::index::vector::builder] partition 805 is empty, skipping
+[2026-06-05T13:09:36Z WARN  lance::index::vector::builder] partition 860 is empty, skipping
+[2026-06-05T13:09:36Z WARN  lance::index::vector::builder] partition 924 is empty, skipping
+  -> {'n': 1000000, 'build_s': 81.22, 'disk_gb': 3.884, 'p50_ms': 11.34, 'p95_ms': 14.46, 'recall@10': 0.105}
+[scale] building n=10,000,000 with IVF_PQ ANN index ...
+[2026-06-05T13:12:42Z WARN  lance::dataset::write::insert] No existing dataset at /ephemeral/scratch/ann_10000000/v.lance, it will be created
+  -> {'n': 10000000, 'build_s': 347.04, 'disk_gb': 38.825, 'p50_ms': 16.91, 'p95_ms': 18.48, 'recall@10': 0.105}
+
+MEASURED (real ANN, up to 10M):
+  {'n': 100000, 'build_s': 41.82, 'disk_gb': 0.39, 'p50_ms': 8.5, 'p95_ms': 10.59, 'recall@10': 0.135}
+  {'n': 1000000, 'build_s': 81.22, 'disk_gb': 3.884, 'p50_ms': 11.34, 'p95_ms': 14.46, 'recall@10': 0.105}
+  {'n': 10000000, 'build_s': 347.04, 'disk_gb': 38.825, 'p50_ms': 16.91, 'p95_ms': 18.48, 'recall@10': 0.105}
+projection to 100M: {
+  "build_s": 3075.1,
+  "disk_gb": 388.23,
+  "p95_ms": 77.58
+}
+SCALE_DONE
